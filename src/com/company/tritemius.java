@@ -6,16 +6,16 @@ public class tritemius {
 
     //Test
     public static void main(String[] args) {
-        System.out.println("Text: " + "applied cryptography" + "--->" + "Encryption: " + linear_code("applied cryptography", 2, 1));
+        System.out.println("Text: " + "applied cryptography" + "--->" + "Encryption: " + linearCode("applied cryptography", 2, 1));
 
-        System.out.println("Ecnryption: " + "bsusrpq tktmspjwhysl" + "--->" + "Decryption: " + linear_decode("bsusrpq tktmspjwhysl", 2, 1));
+        System.out.println("Ecnryption: " + "bsusrpq tktmspjwhysl" + "--->" + "Decryption: " + linearDecode("bsusrpq tktmspjwhysl", 2, 1));
 
-        System.out.println("Text: " + "some ciphertext" + "--->" + "Encryption: " + polynom_code("some ciphertext", 1, 2, 1));
+        System.out.println("Text: " + "some ciphertext" + "--->" + "Encryption: " + polynomialCode("some ciphertext", 1, 2, 1));
         bruteForce(3,5,1, "Pjt ewd Qbmlh kz hxsw ljd!");
 
     }
-        //lineal encryption y = x + a*p + b
-    public static String linear_code(String plaintext, int a, int b){
+    //linear encryption y = x + a*p + b
+    public static String linearCode(String plaintext, int a, int b){
         String cipherText = "";
         int code_int = 0;
         for (int i=0; i<plaintext.length(); i++) {
@@ -36,9 +36,9 @@ public class tritemius {
         }
         return cipherText;
     }
-    // polynom encryption y = x + a*p^2 +b*p + c
 
-    public static String polynom_code(String plaintext, int a, int b, int c){
+    // polynomial encryption y = x + a*p^2 +b*p + c
+    public static String polynomialCode(String plaintext, int a, int b, int c){
         String cipherText = "";
         int code_int = 0;
         for (int i=0; i<plaintext.length(); i++) {
@@ -59,12 +59,12 @@ public class tritemius {
         }
         return cipherText;
     }
-    public static String linear_decode(String chipertext, int a, int b){
+    // linear decryption
+    public static String linearDecode(String chipertext, int a, int b){
         String text = "";
         int code_int = 0;
         for (int i=0; i<chipertext.length(); i++) {
             char letter = chipertext.charAt(i);
-            //only lower-case letters
             if (letter>=65 && letter<=90){
                 letter+=32;
             }
@@ -82,8 +82,8 @@ public class tritemius {
         }
         return text;
     }
-
-    public static String polynom_decode(String ciphertext, int a, int b, int c){
+// polynomial decryption
+    public static String polynomDecode(String ciphertext, int a, int b, int c){
         String text = "";
         int code_int = 0;
         for (int i=0; i<ciphertext.length(); i++) {
@@ -106,13 +106,13 @@ public class tritemius {
         return text;
 
     }
-
+// bruteForce decryption
     public static void bruteForce(int number_param, int max_param, int min_param, String chipertext){
         if(number_param == 2){
             for( int a = min_param; a<=max_param; a++){
                 for(int b = min_param; b<=max_param; b++){
                     System.out.println("A: " + a + ", B: " + b);
-                    System.out.println(linear_decode(chipertext, a, b));
+                    System.out.println(linearDecode(chipertext, a, b));
                 }
             }
         }
@@ -121,7 +121,7 @@ public class tritemius {
                 for(int b = min_param; b<=max_param; b++){
                     for(int c = min_param; c<=max_param; c++){
                         System.out.println("A: " + a + ", B: " + b + ", C: " + c);
-                        System.out.println(polynom_decode(chipertext, a, b, c));
+                        System.out.println(polynomDecode(chipertext, a, b, c));
                     }
                 }
             }
