@@ -24,13 +24,13 @@ public class tritemius {
                 letter+=32;
             }
             char new_char;
-            if (letter == 32){
-                new_char = ' ';
-            }
-            else{
+            if (letter>=97 && letter<=112){
                 code_int = (letter - 96) + a*i + b;
                 while (code_int>26){code_int = code_int - 26;}
                 new_char = lAlphabet[code_int-1];
+            }
+            else{
+                new_char = letter;
             }
             cipherText = cipherText + new_char;
         }
@@ -47,13 +47,13 @@ public class tritemius {
                 letter+=32;
             }
             char new_char;
-            if (letter == 32){
-                new_char = ' ';
-            }
-            else{
+            if (letter>=97 && letter<=112){
                 code_int = (letter - 96) + a*i*i + b*i + c;
                 while (code_int>26){code_int = code_int - 26;}
                 new_char = lAlphabet[code_int-1];
+            }
+            else {
+                new_char = letter;
             }
             cipherText = cipherText + new_char;
         }
