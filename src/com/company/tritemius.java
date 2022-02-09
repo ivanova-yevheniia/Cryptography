@@ -6,7 +6,12 @@ public class tritemius {
 
     //Test
     public static void main(String[] args) {
-        bruteForce(3,5,1, "Pjt ewd Qbmlh kz hxsw ljd");
+        System.out.println("Text: " + "applied cryptography" + "--->" + "Encryption: " + linear_code("applied cryptography", 2, 1));
+
+        System.out.println("Ecnryption: " + "bsusrpq tktmspjwhysl" + "--->" + "Decryption: " + linear_decode("bsusrpq tktmspjwhysl", 2, 1));
+
+        System.out.println("Text: " + "some ciphertext" + "--->" + "Encryption: " + polynom_code("some ciphertext", 1, 2, 1));
+        bruteForce(3,5,1, "Pjt ewd Qbmlh kz hxsw ljd!");
 
     }
         //lineal encryption y = x + a*p + b
@@ -64,14 +69,14 @@ public class tritemius {
                 letter+=32;
             }
             char new_char;
-            if (letter == 32){
-                new_char = ' ';
-            }
-            else{
+            if (letter>=97 && letter<=112){
                 code_int = (letter - 96);
                 while ((a*i + b)>=code_int){code_int = code_int + 26;}
                 code_int = code_int - a*i - b;
                 new_char = lAlphabet[code_int-1];
+            }
+            else {
+                new_char = letter;
             }
             text = text + new_char;
         }
@@ -87,15 +92,15 @@ public class tritemius {
                 letter+=32;
             }
             char new_char;
-            if (letter == 32){
-                new_char = ' ';
-            }
-            else{
+            if (letter>=97 && letter<=112){
                 code_int = (letter - 96);
                 while ((a*i*i + b*i + c)>=code_int){code_int = code_int + 26;}
                     code_int = code_int - a*i*i - b*i - c;
                     new_char = lAlphabet[code_int-1];
                 }
+            else {
+                new_char = letter;
+            }
                 text = text + new_char;
         }
         return text;

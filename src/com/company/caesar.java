@@ -4,14 +4,14 @@ public class caesar {
 
     //Test
     public static void main(String[] args) {
-        String plaintext = "Hello";
-        int key = 3;
 
-        String ciphertext = code(plaintext, key);
-        System.out.println("Encryption: " + plaintext + " ---> " + ciphertext);
+        String ciphertext = code("Bonus vir semper tiro", 10);
+        System.out.println("Encryption: " + "Bonus vir semper tiro" + " ---> " + ciphertext);
 
-        String decoded = decode(ciphertext, key);
+        String decoded = decode("Lyxec fsb cowzob dsby", 10);
         System.out.println("Decryption: " + ciphertext + " ---> " + decoded);
+
+        bruteForce("Aol wbywvzl vm vby spclz pz av il ohwwf");
     }
 
     //convert letters as integers
@@ -45,5 +45,13 @@ public class caesar {
             decoded = decoded + shift(next, 26-key);
         }
         return decoded;
+    }
+
+    public static void bruteForce(String ciphertext){
+        String decoded = "";
+        for (int i =0; i<=20; i++){
+            System.out.println("Key: " + i);
+            System.out.println(decode(ciphertext, i));
+        }
     }
 }
