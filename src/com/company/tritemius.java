@@ -6,15 +6,13 @@ public class tritemius {
 
     //Test
     public static void main(String[] args) {
-        System.out.println("Text: " + "applied cryptography" + "--->" + "Encryption: " + linearCode("applied cryptography", 2, 1));
-
-        System.out.println("Ecnryption: " + "bsusrpq tktmspjwhysl" + "--->" + "Decryption: " + linearDecode("bsusrpq tktmspjwhysl", 2, 1));
-
-        System.out.println("Text: " + "some ciphertext" + "--->" + "Encryption: " + polynomialCode("some ciphertext", 1, 2, 1));
+        System.out.println("Text: " + "applied cryptography" + " ---> " + "Encryption: " + linearCode("applied cryptography", 2, 1));
+        System.out.println("Encryption: " + "bsusrpq tktmspjwhysl" + " ---> " + "Decryption: " + linearDecode("bsusrpq tktmspjwhysl", 2, 1));
+        System.out.println("Text: " + "some chipertext" + " ---> " + "Encryption: " + polynomCode("some chipertext", 1, 2, 1));
+        System.out.println("Encryption: " + "tsvu meusaihrlk" + " ---> " + "Decryption: " + polynomDecode("tsvu meusaihrlk", 1, 2, 1));
         bruteForce(3,5,1, "Pjt ewd Qbmlh kz hxsw ljd!");
-
     }
-    //linear encryption y = x + a*p + b
+        //lineal encryption y = x + a*p + b
     public static String linearCode(String plaintext, int a, int b){
         String cipherText = "";
         int code_int = 0;
@@ -24,7 +22,7 @@ public class tritemius {
                 letter+=32;
             }
             char new_char;
-            if (letter>=97 && letter<=112){
+            if(letter>=97 && letter<=122){
                 code_int = (letter - 96) + a*i + b;
                 while (code_int>26){code_int = code_int - 26;}
                 new_char = lAlphabet[code_int-1];
@@ -36,9 +34,9 @@ public class tritemius {
         }
         return cipherText;
     }
-
     // polynomial encryption y = x + a*p^2 +b*p + c
-    public static String polynomialCode(String plaintext, int a, int b, int c){
+
+    public static String polynomCode(String plaintext, int a, int b, int c){
         String cipherText = "";
         int code_int = 0;
         for (int i=0; i<plaintext.length(); i++) {
@@ -47,29 +45,29 @@ public class tritemius {
                 letter+=32;
             }
             char new_char;
-            if (letter>=97 && letter<=112){
+            if(letter>=97 && letter<=122){
                 code_int = (letter - 96) + a*i*i + b*i + c;
                 while (code_int>26){code_int = code_int - 26;}
                 new_char = lAlphabet[code_int-1];
             }
-            else {
+            else{
                 new_char = letter;
             }
             cipherText = cipherText + new_char;
         }
         return cipherText;
     }
-    // linear decryption
     public static String linearDecode(String chipertext, int a, int b){
         String text = "";
         int code_int = 0;
         for (int i=0; i<chipertext.length(); i++) {
             char letter = chipertext.charAt(i);
+            //only lower-case letters
             if (letter>=65 && letter<=90){
                 letter+=32;
             }
             char new_char;
-            if (letter>=97 && letter<=112){
+            if (letter>=97 && letter<=122){
                 code_int = (letter - 96);
                 while ((a*i + b)>=code_int){code_int = code_int + 26;}
                 code_int = code_int - a*i - b;
@@ -82,7 +80,7 @@ public class tritemius {
         }
         return text;
     }
-// polynomial decryption
+
     public static String polynomDecode(String ciphertext, int a, int b, int c){
         String text = "";
         int code_int = 0;
@@ -92,7 +90,7 @@ public class tritemius {
                 letter+=32;
             }
             char new_char;
-            if (letter>=97 && letter<=112){
+            if (letter>=97 && letter<=122){
                 code_int = (letter - 96);
                 while ((a*i*i + b*i + c)>=code_int){code_int = code_int + 26;}
                     code_int = code_int - a*i*i - b*i - c;
@@ -106,7 +104,7 @@ public class tritemius {
         return text;
 
     }
-// bruteForce decryption
+
     public static void bruteForce(int number_param, int max_param, int min_param, String chipertext){
         if(number_param == 2){
             for( int a = min_param; a<=max_param; a++){
